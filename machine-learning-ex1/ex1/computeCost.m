@@ -14,7 +14,16 @@ J = 0;
 %               You should set J to the cost.
 
 
-J = 1 / (2 * m) * (sum(((X * theta) - y) .^ 2));
+% Non-vectorized cost
+% J = 1 / (2 * m) * (sum(((X * theta) - y) .^ 2));
+
+% Vectorized cost implementation
+% Variable cost is a column vector that represents the difference between our
+% prediction h(X) and the actual label value y before squaring for all training
+% examples.
+% J represents the overall squared loss of all input examples.
+cost = X * theta - y;
+J = 1 / (2 * m) * cost' * cost;
 
 
 % =========================================================================
