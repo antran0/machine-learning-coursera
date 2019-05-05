@@ -85,6 +85,13 @@ fprintf('Running gradient descent ...\n');
 alpha = 0.01;
 num_iters = 400;
 
+
+% *** My values for the learning rate and number of iterations. ***
+% Note: Best candidate for alpha appears to be 0.3 for 400 iterations.
+alpha = 0.3
+num_iters = 400;
+
+
 % Init Theta and Run Gradient Descent 
 theta = zeros(3, 1);
 [theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters);
@@ -106,6 +113,16 @@ fprintf('\n');
 % not need to be normalized.
 price = 0; % You should change this
 
+% vector x is a row vector that does not contain the value x0 = 1
+x = [1650 3];
+
+% perform feature normalization on vector x
+x_normalized = (x - mu) ./ sigma;
+
+% append the value of x0 to the normalized result
+x_normalized = [1 x_normalized];
+
+price = x_normalized * theta;
 
 % ============================================================
 
@@ -150,6 +167,9 @@ fprintf('\n');
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
 price = 0; % You should change this
+
+x = [1 1650 3];
+price = x * theta;
 
 
 % ============================================================
