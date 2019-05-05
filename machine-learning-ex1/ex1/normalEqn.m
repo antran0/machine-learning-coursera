@@ -13,6 +13,9 @@ theta = zeros(size(X, 2), 1);
 % ---------------------- Sample Solution ----------------------
 
 
+% Not sure if X' * X is invertable so pseudo inverse function pinv is used
+% instead of inverse function inv.
+theta = pinv(X' * X) * X' * y;
 
 
 % -------------------------------------------------------------
