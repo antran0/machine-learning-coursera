@@ -17,9 +17,15 @@ grad = zeros(size(theta));
 %               Compute the partial derivatives and set grad to the partial
 %               derivatives of the cost w.r.t. each parameter in theta
 
+% Cost function for logistic regression with regularization:
+% J(theta) = (1/m) * sum_i=1_to_m[ -yi*log(h_theta(xi)) - (1-yi)*log(1-h_theta(xi)) ]
+%           + (lambda/2*m) * sum_j=i_to_n[ theta_j^2 ]
+% Note: Parameter theta_0 (theta_1 in Octave/Matlab because of 1 based indexing)
+% s     should NOT be regularized.
 
+J = costFunction(theta, X, y) + ( lambda/(2*m) * theta(2:numel(theta))' * theta(2:numel(theta)) );
 
-
+grad = (1/m * X'*(sigmoid(X * theta) - y)) + (lambda/m * [0; theta(2:numel(theta), 1)]);
 
 
 % =============================================================
