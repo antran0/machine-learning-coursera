@@ -21,7 +21,23 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+% Add bias to examples
+X = [ones(m, 1), X];
 
+% Compute values for activation units in the hidden layer
+z2 = X * Theta1';
+a2 = sigmoid(z2);
+
+% Add bias to hidden layer activation units
+a2 = [ones(m, 1), a2];
+
+% Compute values for output layer
+z3 = a2 * Theta2';
+a3 = sigmoid(z3);
+
+% Select the index of max value from all the classes to be the prediction for
+% the input example.
+[W p] = max(a3, [], 2);
 
 
 
