@@ -30,7 +30,18 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
-
+% Our hypothesis sigmoid(X * all_theta') returns a m x 10 matrix where each
+% element a_ij represents the likelihood that example at row i is the digit j.
+% (j = 10 corresponds to digit '0')
+%
+% W is a m x 1 vector representing the max prediction of the 10 classifiers in
+% this example.
+%
+% p is a m x 1 vector where the element at row i represents the index of the
+% column j in the hypothesis matrix containing the max element at row i.
+%
+% For more information, see: help max
+[W p] = max(sigmoid(X * all_theta'), [], 2);
 
 
 
