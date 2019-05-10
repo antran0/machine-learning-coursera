@@ -19,9 +19,13 @@ W = zeros(L_out, 1 + L_in);
 % Note: The first column of W corresponds to the parameters for the bias unit
 %
 
-
-
-
+%{
+    One effective strategy for choosing εinit is to base it on the number of units in the √
+    network. A good choice of εinit is εinit = √ 6 , where Lin = sl and Lout = sl+1 are Lin +Lout
+    the number of units in the layers adjacent to Θ(l).
+%}
+epsilon_init = 0.12;
+W = rand(L_out, L_in + 1) * 2 * epsilon_init - epsilon_init;
 
 
 
