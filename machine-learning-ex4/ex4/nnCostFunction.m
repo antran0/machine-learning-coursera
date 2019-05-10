@@ -76,7 +76,9 @@ for i = 1:m
     Y(i,y(i)) = 1;
 end
 
-J = 1/m * sum(sum((( -1*Y.*log(a3) - (1-Y).*log(1-a3) ))));
+J = 1/m * sum(sum((( -1*Y.*log(a3) - (1-Y).*log(1-a3) )))) ...
+    + lambda/(2*m) ...
+    * (sum(sum(Theta1(:,2:end) .^ 2)) + sum(sum(Theta2(:,2:end) .^ 2)));
 % ***** Part 1 end *****
 
 
