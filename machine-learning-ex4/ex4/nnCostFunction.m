@@ -86,12 +86,19 @@ J = 1/m * sum(sum((( -1*Y.*log(a3) - (1-Y).*log(1-a3) )))) ...
 % d3_j = a3_j - yj
 % d2   = (Theta2)' * d3 * gprime(z2) (remove d2_0)
 % delta[l]_ij = delta[l]_ij + al_j*delta[l+1]_j
+%
+% Regularization of gradient:
+%   delta[l]_ij = delta[l]_ij                           for j =  0
+%   delta[l]_ij = delta[l]_ij + lambda/m * Theta[l]_ij  for j >= 1
+
 
 d3 = a3 - Y;                        % m x num_labels matrix
 d2 = d3*Theta2(:,2:end) .* sigmoidGradient(z2); % m x hidden_layer_size
 
-Theta1_grad = 1/m * (Theta1_grad + d2'*a1);
-Theta2_grad = 1/m * (Theta2_grad + d3'*a2);
+Theta1_grad = 1/m * (Theta1_grad + d2'*a1) ...
+            + lambda/m * [zeros(size(Theta1,1), 1), Theta1(:, 2:end)];
+Theta2_grad = 1/m * (Theta2_grad + d3'*a2) ...
+            + lambda/m * [zeros(size(Theta2,1), 1), Theta2(:, 2:end)];
 
 % ***** Part 2 end *****
 
