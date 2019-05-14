@@ -54,9 +54,19 @@ error_val   = zeros(m, 1);
 % ---------------------- Sample Solution ----------------------
 
 
+for i = 1:m
+    X_i = X(1:i, :);
+    y_i = y(1:i);
 
+    % Note: trainLinearReg uses fmincg and fmincg displays "warning: division by zero"
+    % when there are only one or two examples in the training set (i = 1, i = 2).
+    theta_train = trainLinearReg(X_i, y_i, lambda);
+    J_train     = linearRegCostFunction(X_i, y_i, theta_train, 0);
+    J_val       = linearRegCostFunction(Xval, yval, theta_train, 0);
 
-
+    error_train(i)  = J_train;
+    error_val(i)    = J_val;
+end
 
 
 % -------------------------------------------------------------
