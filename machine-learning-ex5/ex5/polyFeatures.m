@@ -15,10 +15,15 @@ X_poly = zeros(numel(X), p);
 %
 % 
 
+% for i = 1:size(X,1)
+%     for j = 1:p
+%         X_poly(i,j) = X(i) ^ j;
+%     end
+% end
 
-
-
-
+for degree = 1:p
+    X_poly(:, degree) = X .^ degree;
+end
 
 % =========================================================================
 
