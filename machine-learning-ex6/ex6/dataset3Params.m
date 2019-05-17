@@ -59,8 +59,8 @@ for C_i = CANDIDATES
     end
 end
 
-% Optimal values of [C, sigma] for data set 3:
-%   C = 0.1, sigma = 0.1
+% Possible optimal values of [C, sigma] for data set 3:
+%   C = 1, sigma = 0.1
 
 % =========================================================================
 
