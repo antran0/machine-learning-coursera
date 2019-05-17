@@ -48,9 +48,11 @@ x = zeros(n, 1);
 %
 %
 
-
-
-
+% Assumes the word_indices vector was processed correctly and contains values
+% in the range of 1 to n=1899.
+for i = word_indices
+    x(i) = 1;
+end
 
 
 
