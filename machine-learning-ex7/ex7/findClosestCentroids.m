@@ -21,11 +21,22 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
+% For every example i, we want to set:
+%       c^(i) := j that minimizes ||x_i - u_j||^2
+% where:
+%       i = [1, m traning examples]
+%       j = [1, K centroids]
 
+% temp array to hold the value of ||x_i - u_j||^2
+norm_sq = zeros(K,1);
 
+for i = 1:size(X,1)
+    for j = 1:K
+        norm_sq(j) = norm(X(i,:) - centroids(j,:))^2;
+    end
 
-
-
+    [dummy, idx(i)] = min(norm_sq);
+end
 
 % =============================================================
 
