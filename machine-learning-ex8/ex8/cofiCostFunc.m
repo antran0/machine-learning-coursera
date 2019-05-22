@@ -40,8 +40,9 @@ Theta_grad = zeros(size(Theta));
 %                     partial derivatives w.r.t. to each element of Theta
 %
 
-
-
+% Note: we should be accumulating the cost for user j and movie i only if R(i,j) = 1.
+%       ==> rating prediction theta^(j)' * x^(i) needs to be multiplied by R(i, j)
+J = 1/2 * sum(sum((X*Theta'.*R - Y).^2));
 
 
 
