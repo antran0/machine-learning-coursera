@@ -47,7 +47,9 @@ Theta_grad = zeros(size(Theta));
 % with the actual predictions given by users in matrix Y.
 difference = X*Theta'.*R - Y;   % num_movies x num_users
 
-J = 1/2 * sum(sum(difference.^2));
+J = 1/2 * sum(sum(difference.^2)) ...
+  + lambda/2 * sum(sum(Theta .^ 2)) ...
+  + lambda/2 * sum(sum(X .^ 2));
 
 
 X_grad      = difference * Theta;
