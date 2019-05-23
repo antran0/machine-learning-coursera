@@ -42,12 +42,17 @@ Theta_grad = zeros(size(Theta));
 
 % Note: we should be accumulating the cost for user j and movie i only if R(i,j) = 1.
 %       ==> rating prediction theta^(j)' * x^(i) needs to be multiplied by R(i, j)
-J = 1/2 * sum(sum((X*Theta'.*R - Y).^2));
+
+% Stores the difference of our predictions of ratings of movie i given by user j
+% with the actual predictions given by users in matrix Y.
+difference = X*Theta'.*R - Y;   % num_movies x num_users
+
+J = 1/2 * sum(sum(difference.^2));
 
 
+X_grad      = difference * Theta;
 
-
-
+Theta_grad  = difference' * X;
 
 
 
