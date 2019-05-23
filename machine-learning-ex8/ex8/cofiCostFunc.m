@@ -52,9 +52,11 @@ J = 1/2 * sum(sum(difference.^2)) ...
   + lambda/2 * sum(sum(X .^ 2));
 
 
-X_grad      = difference * Theta;
+X_grad      = difference * Theta ...
+            + lambda * X;
 
-Theta_grad  = difference' * X;
+Theta_grad  = difference' * X ...
+            + lambda * Theta;
 
 
 
