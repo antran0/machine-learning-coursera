@@ -218,3 +218,31 @@ end
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
+
+% In our cross validation, we obtained a test error of 3.8599 for λ = 3
+% lambda_min = the lambda used to obtain the smallest J_val
+[J_val_min min_index] = min(error_val);
+lambda_min = lambda_vec(min_index);
+
+fprintf('Minimum J_val: %d, lambda: %d\n', J_val_min, lambda_min);
+fprintf('Program paused. Press enter to continue.\n');
+pause;
+
+%{
+    In practice, especially for small training sets, when you plot learning curves
+    to debug your algorithms, it is often helpful to average across multiple sets
+    of randomly selected examples to determine the training error and cross validation error.
+    Concretely, to determine the training error and cross validation error for i examples,
+    you should first randomly select i examples from the training set and i examples
+    from the cross validation set. You will then learn the param- eters θ using the
+    randomly chosen training set and evaluate the parameters θ on the randomly chosen
+    training set and cross validation set. The above steps should then be repeated
+    multiple times (say 50) and the averaged error should be used to determine the
+    training error and cross validation error for i examples.
+%}
+n_sample    = 6;    % training example X only has 12 examples
+n_iter      = 50;
+lambda      = 0.01;
+
+[error_train_avg error_val_avg] = ...
+    averageError(X_poly, y, X_poly_val, yval, lambda, n_sample, n_iter);
